@@ -1,0 +1,22 @@
+{
+    "items": [
+        {
+            "key": 1,
+            "name": "hieronta vasara",
+            "desc": "Sopii hyvin koulu hierojille.",
+            "price": 666
+        },
+        {
+            "key": 2,
+            "name": "Huone-kasvi",
+            "desc": "Kodin viihtyvyyttä lisäämään.",
+            "price": 420
+        },
+        {
+            "key": 3,
+            "name": "Kököstys",
+            "desc": "Tulukaa hakemaan tämä jo poies, käyny vanhaksi ja epäkäytännöllinen. Kuulin huhua että joku masokisti tätäkin vielä käyttää.",
+            "price": 0
+        }
+    ]
+}
