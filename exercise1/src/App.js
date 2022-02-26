@@ -1,7 +1,5 @@
 import './App.css';
 import React from 'react';
-import Header from "semantic-ui-react"
-import { Grid, List, } from '@material-ui/core';
 
 
 function App() {
@@ -49,11 +47,11 @@ function App() {
       <div className='Feed'>
         <ul className='App-content' >
           {mapatut}
+          <div className='sivu'>
+            <h2>Tosi mielenkiintoset</h2>
+            {sivuelementit}
+          </div>
         </ul >
-      </div>
-      <div className='sivu'>
-        <h2>Tosi mielenkiintoset</h2>
-        {sivuelementit}
       </div>
     </div>
   );

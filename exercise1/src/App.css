@@ -31,7 +31,17 @@
 }
 
 .sivu {
-  text-align: right;
+  text-align: center;
+  position: absolute;
+  top: 221px;
+  padding-bottom:  20px;
+  right: 0;
+  background-color: blue;
+  float: inline-end;
+  list-style-type: none;
+  margin-left: -200;
+  height: 500px;
+  width: 33%;
 }
 
 body {
