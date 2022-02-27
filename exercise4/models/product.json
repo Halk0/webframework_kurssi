@@ -1,0 +1,13 @@
+{
+    "name": "example_name",
+    "manufacturer": "example_manufacturer",
+    "category": [
+        "example_category1",
+        "example_category2"
+    ],
+    "description": "example_description",
+    "image": "./media/image.png",
+    "producNumber": 0,
+    "price": 10,
+    "stock": 0
+}
