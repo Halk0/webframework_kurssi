@@ -14,6 +14,11 @@ var registerRouter = require('./routes/register');
 var searchRouter = require('./routes/search');
 var basicAuth = require('express-basic-auth');
 var indexRouter = require('./routes/index');
+var newProductRouter = require('./routes/newproduct');
+var purchaseRouter = require('./routes/purchase');
+var invoiceRouter = require('./routes/invoice');
+var invoicesRouter = require('./routes/invoices');
+var delinvoiceRouter = require('./routes/delinvoice');
 
 fs = require('fs');
 var app = express();
@@ -22,6 +27,25 @@ console.log(__dirname)
 var curState = fs.readFileSync(path.normalize(__dirname + '/state.json'), 'utf-8', function (err, data) {
   return JSON.parse(data.toString());
 });
+
+var addUsers = express.Router();
+addUsers.post('/', function (req, res, next) {
+  var usersDict = {}
+  fs.readFileSync('./state.json', 'utf-8', function (data, err) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500)
+    }
+    Accounts = JSON.parse(data.toString())
+    for (account = 0; account < Accounts.accounts; account++) {
+      usersDict[Accounts.accounts[account].UserName] = Accounts.accounts[account].Password
+    }
+    console.log(usersDict);
+  })
+  app.use(basicAuth({ users: usersDict }))
+  res.sendStatus(200);
+  return;
+})
 
 console.log(curState)
 // view engine setup
@@ -36,19 +60,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/users', usersRouter);
-app.use('/index', indexRouter)
-app.use('/products', productsRouter)
-app.use('/product', productRouter)
-app.use('/register', registerRouter)
-app.use('/search', searchRouter)
+app.use('/index', indexRouter);
+app.use('/products', productsRouter);
+app.use('/product', productRouter);
+app.use('/register', registerRouter, addUsers);
+app.use('/search', searchRouter);
+app.use('/newproduct', newProductRouter)
 
-// app.use(basicAuth({ users: { "adm": "adm" } }))
+app.use(basicAuth({ users: { "adm": "adm" } }))
 app.use('/edit', editRouter);
+app.use('/purchase', purchaseRouter);
+app.use('/invoices', invoicesRouter);
+app.use('/invoice', invoiceRouter);
+app.use('/delinvoice', delinvoiceRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function (err, req, res, next) {

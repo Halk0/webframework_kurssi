@@ -10,7 +10,12 @@ router.get('/', function (req, res, next) {
             return;
         }
         const currentState = JSON.parse(data.toString());
-        res.json(currentState.products);
+        for (pur = 0; pur < currentState.purchases.length; pur++) {
+            userPurchases = []
+            if (req.header('UserId') == currentState.purchases[pur].UserId)
+                userPurchases.push(currentState.purchases[pur])
+        }
+        res.json(currentState.purchases);
         return;
     }
     )

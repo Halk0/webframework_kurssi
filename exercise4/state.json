@@ -13,7 +13,7 @@
             "image": "./media/image.png",
             "productNumber": 0,
             "price": 10,
-            "stock": 0
+            "stock": -5
         },
         {
             "name": "example_name1",
@@ -34,7 +34,15 @@
     "Users": {
         "admin": "adminpass"
     },
-    "purchases": [],
+    "purchases": [
+        {
+            "productNumber": 0,
+            "amount": 2,
+            "UserId": 0,
+            "invoiceNumber": 1,
+            "total": 20
+        }
+    ],
     "accounts": [
         {
             "UserName": "example_name",

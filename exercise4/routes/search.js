@@ -3,32 +3,34 @@ fs = require('fs');
 var router = express.Router();
 
 
-router.get('/search', function (req, res, next) {
-    fs.readFileSync('../state.json', 'utf-8', (err, data) => {
+router.get('/', function (req, res, next) {
+    fs.readFile('./state.json', 'utf-8', (err, data) => {
         if (err) {
             console.error(err);
+            res.send(err)
             return;
         }
         const currentState = JSON.parse(data.toString());
         console.log(currentState);
         const resProducts = [];
-        if (req.headers.name)
+        if (req.header('name'))
             for (var prod = 0; prod < currentState.products.length; prod++) {
-                if (currentState.products[prod].name == req.headers.name) {
+                if (currentState.products[prod].name == req.header('name')) {
                     resProducts.push(currentState.products[prod]);
                 }
             }
-        else if (req.headers.manufacturer)
+        else if (req.header('manufacturer'))
             for (var prod = 0; prod < currentState.products.length; prod++) {
-                if (currentState.products[prod].manufacturer == req.headers.manufacturer) {
+                if (currentState.products[prod].manufacturer == req.header('manufacturer')) {
                     resProducts.push(currentState.products[prod]);
                 }
             }
-        else if (req.headers.category)
+        else if (req.header('category'))
             for (var prod = 0; prod < currentState.products.length; prod++) {
-                if (currentState.products[prod].category == req.headers.category) {
-                    resProducts.push(currentState.products[prod]);
-                }
+                for (var cat = 0; cat < currentState.products[prod].category.length; cat++)
+                    if (currentState.products[prod].category[cat] == req.header('category')) {
+                        resProducts.push(currentState.products[prod]);
+                    }
             }
         res.json(resProducts);
         return;

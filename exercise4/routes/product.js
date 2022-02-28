@@ -1,16 +1,20 @@
 var express = require('express');
 var router = express.Router();
-var state = require('../state.json');
+fs = require('fs')
 
 
-router.get('/product', function (req, res, next) {
-    console.log(state);
-    for (var prod = 0; prod < state.products.length; prod++) {
-        if (state.products[prod].productNumber == req.headers.productNumber) {
-            res.json(state.products[prod]);
-            return;
+router.get('/', function (req, res, next) {
+    fs.readFile('./state.json', 'utf-8', (err, data) => {
+        var parsed = JSON.parse(data.toString())
+        for (var prod = 0; prod < parsed.products.length; prod++) {
+            if (parsed.products[prod].productNumber == req.header('productNumber')) {
+                res.json(parsed.products[prod]);
+                return;
+            }
         }
-    }
+        res.sendStatus(404, 'The product you were looking for could not be found.');
+        return;
+    });
 }
 );
 
