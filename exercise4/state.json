@@ -5,13 +5,30 @@
             "manufacturer": "example_manufacturer",
             "category": [
                 "example_category1",
-                "example_category2"
+                "example_category2",
+                "exx_cat3",
+                "exxcat4"
             ],
             "description": "example_description",
             "image": "./media/image.png",
-            "producNumber": 0,
+            "productNumber": 0,
             "price": 10,
             "stock": 0
+        },
+        {
+            "name": "example_name1",
+            "manufacturer": "example_manufacturer1",
+            "category": [
+                "example_category1",
+                "example_category2",
+                "exx_cat3",
+                "exxcat4"
+            ],
+            "description": "example_description1",
+            "image": "./media/image1.png",
+            "productNumber": 1,
+            "price": 20,
+            "stock": 1
         }
     ],
     "Users": {
@@ -24,6 +41,12 @@
             "Password": "example_pass",
             "UserId": 0,
             "address": "example_addr"
+        },
+        {
+            "UserName": "matti",
+            "Password": "meikäläinen",
+            "UserId": 1,
+            "address": "Joulumaa"
         }
     ]
 }
