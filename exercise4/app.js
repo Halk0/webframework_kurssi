@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors')
 
 var data = require('./state.json')
 
@@ -19,6 +20,7 @@ var purchaseRouter = require('./routes/purchase');
 var invoiceRouter = require('./routes/invoice');
 var invoicesRouter = require('./routes/invoices');
 var delinvoiceRouter = require('./routes/delinvoice');
+var delproductRouter = require('./routes/delproduct');
 
 fs = require('fs');
 var app = express();
@@ -52,6 +54,7 @@ console.log(curState)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -66,6 +69,7 @@ app.use('/product', productRouter);
 app.use('/register', registerRouter, addUsers);
 app.use('/search', searchRouter);
 app.use('/newproduct', newProductRouter)
+app.use('/delproduct', delproductRouter);
 
 app.use(basicAuth({ users: { "adm": "adm" } }))
 app.use('/edit', editRouter);

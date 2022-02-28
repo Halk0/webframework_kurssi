@@ -1,6 +1,7 @@
 {
     "UserId": 0,
     "productNumber": 0,
+    "productName": "Example_product",
     "amount": 2,
     "total": 20,
     "invoiceNumber": 0

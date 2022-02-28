@@ -20,6 +20,7 @@ router.post('/', function (req, res, next) {
                 currentState.products[prod].stock -= receivedPurchase.amount
                 receivedPurchase["invoiceNumber"] = Math.floor(Math.random() * 10);
                 receivedPurchase["total"] = currentState.products[prod].price * receivedPurchase.amount;
+                receivedPurchase["productName"] = receivedPurchase.productName;
             }
         }
         currentState.purchases.push(receivedPurchase)

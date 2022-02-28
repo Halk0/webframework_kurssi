@@ -7,7 +7,7 @@
     ],
     "description": "example_description",
     "image": "./media/image.png",
-    "producNumber": 0,
+    "productNumber": 0,
     "price": 10,
     "stock": 0
 }
